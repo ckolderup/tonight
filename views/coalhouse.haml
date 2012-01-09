@@ -1,0 +1,30 @@
+%html
+  %head
+    %title
+      = "Coalhouse?"
+    %link{:rel => "stylesheet", :type => "text/css", :href => "coalhouse.css"}
+  %body
+    #content
+      %h1#header "Coalhouse?"
+
+      %form.add{:action => "/add", :method => "POST"}
+        %input.entry{:id => "name", :name => "name", :type => "text"}
+        %input.button{:value => "I'm in", :type => "submit"}
+
+      #count
+        Current Total: #{@attending.count}
+
+      %ul#attendees
+        - for attendee in @attending
+          %li.attendee
+            %form.delete{:action => "/delete", :method => "POST"}
+              %input{:name => "id", :value => "#{attendee.id}", :type => "hidden"}
+              %input.remove{:value => "X", :type => "submit"}
+            %span.name
+              = attendee.name
+            %span.timestamp
+              = attendee.timestamp.strftime('%I:%M%p')
+
+    #footer
+      Delete responsibly.
+
