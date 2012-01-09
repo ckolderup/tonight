@@ -19,7 +19,7 @@
           %li.attendee
             %form.delete{:action => "/delete", :method => "POST"}
               %input{:name => "id", :value => "#{attendee.id}", :type => "hidden"}
-              %input.remove{:value => "X", :type => "submit"}
+              %input.X{:value => "X", :type => "submit"}
             %span.name
               = attendee.name
             %span.timestamp

@@ -42,15 +42,27 @@ div {
   list-style: none;
   width: 300px;
   margin-left: auto;
-  margin-right: auto; }
+  margin-right: auto;
+  text-indent: -1em;
+  padding-left: 50px;
+  padding-right: 0px; }
 
 .attendee {
   margin-bottom: 1em; }
 
-.delete {
-  display: inline; }
+.name {
+  width: 180px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: inline-block;
+  text-indent: 0; }
 
-.remove {
+.delete {
+  width: 30px;
+  display: inline-block; }
+
+.X {
   display: inline;
   border: 0px;
   color: #888888;
@@ -58,7 +70,10 @@ div {
 
 .timestamp {
   color: #888888;
-  font-size: 0.6em; }
+  font-size: 0.6em;
+  display: inline-block;
+  width: 65px;
+  text-align: right; }
 
 #footer {
   font-size: 0.75em;
