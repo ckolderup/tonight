@@ -28,7 +28,7 @@ class Coalhouse < Sinatra::Application
   post '/add' do
     name = params[:name]
     name = 'Lazy Mystery Guest' if name.length == 0
-    time = DateTime.zone.now
+    time = DateTime.now
 
     Attending.create(:name => name, :timestamp => time)
 
