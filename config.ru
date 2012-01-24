@@ -3,5 +3,5 @@ require 'bundler'
 
 Bundler.require
 
-require './coalhouse'
-run Coalhouse
+require './whos-in'
+run WhosIn

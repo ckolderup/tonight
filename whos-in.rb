@@ -4,7 +4,7 @@ require 'data_mapper'
 require 'haml'
 require 'sass'
 
-DataMapper.setup(:default, ENV['DATABASE_URL'] || "sqlite://#{Dir.pwd}/coalhouse.db")
+DataMapper.setup(:default, ENV['DATABASE_URL'] || "sqlite://#{Dir.pwd}/whos-in.db")
 
 class Attending
   include DataMapper::Resource
@@ -15,14 +15,14 @@ end
 
 DataMapper.auto_upgrade!
 
-class Coalhouse < Sinatra::Application
+class WhosIn < Sinatra::Application
   get '/' do
     t = Date.today
     stale = Attending.all(:timestamp.lt => DateTime.new(t.year, t.month, t.day))
     stale.each { |a| a.destroy }
    
     @attending = Attending.all
-    haml :coalhouse
+    haml :index
   end
 
   post '/add' do
