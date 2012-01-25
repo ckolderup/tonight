@@ -16,12 +16,16 @@ end
 DataMapper.auto_upgrade!
 
 class WhosIn < Sinatra::Application
+  enable :sessions
+  
   get '/' do
     t = Date.today
     stale = Attending.all(:timestamp.lt => DateTime.new(t.year, t.month, t.day))
     stale.each { |a| a.destroy }
-   
-    @attending = Attending.all
+    
+    @attending = Attending.all :order => :timestamp.desc
+    @added_id = session.delete :added_id
+    
     haml :index
   end
 
@@ -30,9 +34,11 @@ class WhosIn < Sinatra::Application
     name = 'Lazy Mystery Guest' if name.length == 0
     time = DateTime.now
 
-    Attending.create(:name => name, :timestamp => time)
+    attendee = Attending.create(:name => name, :timestamp => time)
 
-    #flash[:notice] = "Added #{name}"
+    session[:added_id] = attendee.id
+
+    # flash[:notice] = "Added #{name}"
     redirect '/', 303
   end
 

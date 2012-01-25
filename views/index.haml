@@ -1,30 +1,30 @@
 %html
   %head
-    %title
-      = "Who's In?"
-    %link{:rel => "stylesheet", :type => "text/css", :href => "whos-in.css"}
+    %title Who&rsquo;s In?
+    %link{ :rel => 'stylesheet', :href => 'whos-in.css' }
+    %meta{ :name => 'viewport', :content => 'width=320, initial-scale=1, maximum-scale=1' }
+    
   %body
-    #content
-      %h1#header "Who's In?"
+    %h1#header Who&rsquo;s In?
 
-      %form.add{:action => "/add", :method => "POST"}
-        %input.entry{:id => "name", :name => "name", :type => "text"}
-        %input.button{:value => "I'm in", :type => "submit"}
+    %h2
+      Current Total:
+      %strong= @attending.count
+      
+    %form#add{ :action => '/add', :method => 'POST' }
+      %label{ :for => 'name' } Name
+      %input{ :type => 'text', :id => 'name', :name => 'name', :autofocus => true }
+      %button I&rsquo;m in
 
-      #count
-        Current Total: #{@attending.count}
+    %ul#attendees
+      - @attending.each do |attendee|
+        %li{ :class => (@added_id == attendee.id ? 'added' : nil) }
+          %span.name= attendee.name
+          %span.timestamp= attendee.timestamp.strftime('%I:%M%p').sub(/^0/, '')
+          %form.delete{ :action => '/delete', :method => 'POST' }
+            %input{ :name => 'id', :value => attendee.id, :type => 'hidden' }
+            %button{ :title => "Delete #{ attendee.name }" } &times;
 
-      %ul#attendees
-        - for attendee in @attending
-          %li.attendee
-            %form.delete{:action => "/delete", :method => "POST"}
-              %input{:name => "id", :value => "#{attendee.id}", :type => "hidden"}
-              %input.X{:value => "X", :type => "submit"}
-            %span.name
-              = attendee.name
-            %span.timestamp
-              = attendee.timestamp.strftime('%I:%M%p')
-
-    #footer
+    %p#footer
       Delete responsibly.
 
