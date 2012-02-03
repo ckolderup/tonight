@@ -1,0 +1,9 @@
+#copy
+  TONIGHT.PM is a handy tool to facilitate RSVPs on the day of an event. Maybe you have a weekly meetup or a group of friends who all go to the same bar, and it would help if you knew how many people were going to be there. By visiting your own page at [anything].tonight.pm, you and your friends can quickly add yourselves to the list of attendees and get on with your day.
+
+#generator
+  Try it now! Go to [anything].#{ENV['SITE_DOMAIN']}, or try this random, unoccupied page:
+
+  #lazy
+    %a{:href => "http://#{rando}.#{ENV['SITE_DOMAIN']}"} 
+      #{rando}.#{ENV['SITE_DOMAIN']}
