@@ -38,7 +38,6 @@ class WhosIn < Sinatra::Application
 
     session[:added_id] = attendee.id
 
-    # flash[:notice] = "Added #{name}"
     redirect '/', 303
   end
 
@@ -48,7 +47,6 @@ class WhosIn < Sinatra::Application
     victim = Attending.get(id)
     victim.destroy
    
-    #flash[:notice] = "Removed #{victim.name}"
     redirect '/', 303
   end
 end
