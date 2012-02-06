@@ -24,12 +24,31 @@ body {
 h1, h2 {
   text-align: center;
   font-size: 25px;
-  line-height: 30px; }
+  line-height: 30px;
+  margin-bottom: 20px; }
 
 h2 {
   font-weight: normal;
   font-size: 20px;
-  margin-bottom: 20px; }
+  margin-top: -20px; }
+  
+p {
+  margin-bottom: 10px;
+  }
+  
+.example-address {
+  white-space: nowrap;
+  }
+  
+#lazy {
+  display: block;
+  margin: 20px 0;
+  text-align: center;
+  padding: 5px 0;
+  background: #EBB2A6;
+  color: #1E0603;
+  text-decoration: none;
+  }
 
 #add {
   margin: 15px -5px;
@@ -98,3 +117,8 @@ h2 {
   color: #555555;
   text-align: center;
   font-style: italic; }
+
+#footer a {
+  color: #558;
+  text-decoration: none;
+}
