@@ -30,9 +30,7 @@ class WhosIn < Sinatra::Application
         exit
       end
 
-      t = Date.today
-      stale = Attending.all(:timestamp.lt => DateTime.new(t.year, t.month, t.day))
-      stale.each { |a| a.destroy }
+      reset_page(subdomain)
 
       @attending = Attending.all :subdomain => subdomain, :order => :timestamp.desc
       @added_id = session.delete :added_id
@@ -77,5 +75,16 @@ class WhosIn < Sinatra::Application
       count = Attending.count(:subdomain => rando)
     end while count != 0
     rando
+  end
+
+  def reset_page(subdomain)
+    oldest = Attending.first(:subdomain => subdomain, :order => :timestamp.asc) 
+    return if oldest.nil?
+
+    age_in_days = DateTime.now - oldest.timestamp
+    return if age_in_days < 1.0
+
+    stale = Attending.all(:subdomain => subdomain)
+    stale.each { |a| a.destroy }
   end
 end
