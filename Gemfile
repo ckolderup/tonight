@@ -7,3 +7,9 @@ gem 'dm-postgres-adapter'
 gem 'haml', '3.0.25'
 gem 'sinatra-subdomain'
 gem 'random-word'
+
+group :development do
+  gem "tux"
+  gem "heroku"
+  gem "shotgun"
+end
