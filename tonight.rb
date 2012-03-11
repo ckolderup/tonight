@@ -6,7 +6,7 @@ require 'sass'
 require 'sinatra/subdomain'
 require 'random-word'
 
-DataMapper.setup(:default, ENV['DATABASE_URL'] || "sqlite://#{Dir.pwd}/whos-in.db")
+DataMapper.setup(:default, ENV['DATABASE_URL'] || "sqlite://#{Dir.pwd}/tonight.db")
 
 class Attending
   include DataMapper::Resource
@@ -18,7 +18,7 @@ end
 
 DataMapper.auto_upgrade!
 
-class WhosIn < Sinatra::Application
+class Tonight < Sinatra::Application
   enable :sessions
   register Sinatra::Subdomain
   

@@ -3,5 +3,5 @@ require 'bundler'
 
 Bundler.require
 
-require './whos-in'
-run WhosIn
+require './tonight'
+run Tonight
