@@ -1,9 +1,30 @@
-## Who's In?
+##tonight.pm
 
-A very simple web application to let you and your friends RSVP for a regular gathering.
+tonight.pm is a handy tool to facilitate RSVPs on the day of an event. Maybe you have a weekly meetup or a group of friends who all go to the same bar, and it would help if you knew how many people were going to be there.
 
-A group of friends of mine all meet at a restaurant every Tuesday night. The guest list is constantly changing from week to week as people go on vacation or have other engagements, so we never really know how many people will be there on a given night.
+By visiting your own page at anything.tonight.pm, you and your friends can quickly add yourselves to the list of attendees and get on with your day.
 
-Whoever has the unfortunate luck to be the first to arrive at the restaurant is greeted by the beleaguered staff, who know that we will have a large party, with a simple "How many?" and too frequently our response is "um, 8? Maybe 12? No more than 15."
+Contributors:
 
-Instead, we now use Who's In?, which is a website that lets you RSVP for a nightly event. Every day at midnight the list starts over, so people who are coming have to indicate on the day of that they are coming. Within a matter of weeks, we've got everyone using it with some degree of reliability and now have a much more accurate estimate when greeted with "How many?"
+* [Casey Kolderup][ck]
+* [John Holdun][joho]
+
+[ck]: http://github.com/ckolderup
+[joho]: http://github.com/johnholdun
+
+Tonight.pm uses:
+
+* [Sinatra][sinatra]
+* [Datamapper][dm]
+* [jQuery Timezone Plugin][jquerytz]
+* [HAML][haml]/[SASS][sass]
+* [sinatra/subdomain][ssd]
+* [random-word][rw]
+
+[sinatra]: http://www.sinatrarb.com
+[dm]: http://datamapper.org
+[jquerytz]: https://github.com/hwki/jQuery-Timezone/
+[haml]: http://haml-lang.com
+[sass]: http://sass-lang.com
+[ssd]: http://rubygems.org/gems/sinatra-subdomain
+[rw]: http://rubygems.org/gems/random-word
