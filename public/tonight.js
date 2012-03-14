@@ -5,7 +5,8 @@
     i,
     timestamp,
     date,
-    label
+    label,
+    selectOutField
   
   for (i = 0; i < timestamps.length; i++) {
     timestamp = timestamps[i]
@@ -15,4 +16,12 @@
     label += (date.getHours() >= 12 ? "PM" : "AM")
     timestamp.innerHTML = label
   }
+  
+  selectOutField = function() {
+    document.querySelector(".out form.add input").select()
+  }
+  
+  if (location.hash === "#out") selectOutField()
+  
+  document.querySelector("h2 a.out").onclick = selectOutField
 })()
