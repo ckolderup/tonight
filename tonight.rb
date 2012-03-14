@@ -21,6 +21,8 @@ DataMapper.auto_upgrade!
 class Tonight < Sinatra::Application
   enable :sessions
   register Sinatra::Subdomain
+  set :haml, { :format => :html5, :ugly => true }
+  set :sass, { :style => :compressed }
   
   subdomain do
     get '/' do
