@@ -1,0 +1,14 @@
+%h1#header 
+  #{subdomain}
+
+%textarea#attendees-copy{ :autofocus => true, :rows => @attending.size + 1, :cols => 40 }= "Current Total: #{@attending.count}\n" + @attending.map(&:name).join("\n")
+
+%p#footer
+  %a{ :href => '/' } Regular list
+  &bull;
+  Delete responsibly.
+  &bull;
+  %a{ :href => 'http://tonight.pm' } tonight.pm
+
+%script
+  document.getElementById("attendees-copy").select()

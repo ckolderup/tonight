@@ -40,6 +40,15 @@ class Tonight < Sinatra::Application
       haml :index
     end
     
+    get '/copy' do
+
+      reset_page(subdomain)
+
+      @attending = Attending.all :subdomain => subdomain, :order => :timestamp.desc
+      
+      haml :copy
+    end
+        
     post '/add' do
       name = params[:name]
       name = 'Lazy Mystery Guest' if name.length == 0
