@@ -13,7 +13,7 @@
 %ul#attendees
   - @attending.each do |attendee|
     %li{ :class => (@added_id == attendee.id ? 'added' : nil) }
-      %span.name= attendee.name
+      %span.name= html_escape attendee.name
       %span.timestamp= attendee.timestamp.strftime('%I:%M%p').sub(/^0/, '')
       %form.delete{ :action => '/delete', :method => 'POST' }
         %input{ :name => 'id', :value => attendee.id, :type => 'hidden' }
