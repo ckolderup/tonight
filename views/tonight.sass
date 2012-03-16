@@ -32,6 +32,10 @@ h1, #title input
 h1
   :display none
   
+#info h1, #info p
+  :display block
+  :margin-bottom 10px
+  
 #title input
   :padding 0
   :margin 0
@@ -86,35 +90,35 @@ form.add
   input[type='text']
     :border 1px solid #CCC
     :padding 4px
-    :width 225px
+    :width 300px
+    :border-radius 1px 3px 3px 1px
+    :margin-right -80px
     
     &:focus
       :outline 0
-      :border 2px solid #888
-      :padding 3px      
+      :-webkit-box-shadow 0 0 3px #55F
         
-  button
-    :border 0
-    :height 30px
-    :width 80px
-    :float right
-    :margin 0 0 0 -5
-    :line-height 30px
-    :color #FFF
-    :text-shadow 0 -1px 0 rgba(0, 0, 0, 0.2)
-    :background -webkit-linear-gradient(-90deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0), transparent)
-    :background -moz-linear-gradient(-90deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0), transparent)
-    :-webkit-border-radius 3px
-    :-moz-border-radius 3px
-    :border-radius 3px    
-    :border 1px solid rgba(0, 0, 0, 0.1)
-    :position relative
+button
+  :cursor pointer
+  :height 30px
+  :width 80px
+  :float right
+  :line-height 30px
+  :color #FFF
+  :text-shadow 0 -1px 0 rgba(0, 0, 0, 0.2)
+  :background -webkit-linear-gradient(-90deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0), transparent)
+  :background -moz-linear-gradient(-90deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0), transparent)
+  :-webkit-border-radius 3px
+  :-moz-border-radius 3px
+  :border-radius 3px    
+  :border 1px solid rgba(0, 0, 0, 0.1)
+  :position relative
+  
+  .in &
+    :background-color #66D958
     
-    .in &
-      :background-color #66D958
-      
-    .out &
-      :background-color #D45649
+  .out &
+    :background-color #D45649
   
 .responders
   :margin 20px 0
@@ -178,6 +182,46 @@ textarea.responders
   :border 2px solid #CCC
   :border-color rgba(0, 0, 0, 0.2)
   :outline 0
+  
+form#gen
+  :margin 20px 0
+  
+  div
+    :white-space nowrap
+    :border 1px solid #CCC
+    :border-radius 1px
+    :background #FFF
+    :padding 4px
+    :overflow hidden
+    :text-align right
+  
+  input, span
+    :display inline-block
+    :font-size 20px
+    :line-height 20px
+  
+  input
+    :background transparent
+    :border none
+    :padding 0
+    :text-align right
+    :margin 0
+    
+    &:focus
+      :outline 0
+      
+  div.focus
+    :outline 0
+    :-webkit-box-shadow 0 0 3px #55F
+    
+  span
+    :margin-left -0.5ex
+    
+  button
+    :background-color #66D958
+    :display block
+    :margin 10px 0
+    :width 100%
 
 #footer
   :margin-top 20px
@@ -185,3 +229,7 @@ textarea.responders
   :color #555
   :text-align center
   :font-style italic
+
+  a
+    :color #33C
+    :text-decoration none

@@ -4,10 +4,19 @@
   <strong>tonight.pm</strong> is a handy tool to facilitate RSVPs on the day of an event. Maybe you have a weekly meetup or a group of friends who all go to the same bar, and it would help if you knew how many people were going to be there.
   
 %p
-  By visiting your own page at <span class='example-address'><code>anything</code>.tonight.pm</span>, you and your friends can quickly add yourselves to the list of attendees and get on with your day.
+  By visiting your own page at <span class='example-address'><code>anything</code>.tonight.pm</span>, you and your friends can quickly add yourselves to the list of attendees and get on with your day. Try it now!
+  
+%form#gen{ :method => 'post', :action => '/generate' }
+  %div.focus
+    %input{ :type => 'text', :name => 'slug', :value => rando, :autofocus => true }
+    %span .tonight.pm
+  %button I&rsquo;m going there
 
-%p#generator
-  Try it now! Go to <span class='example-address'><code>anything</code>.tonight.pm</span>, or try this random, unoccupied page:
-
-  %a#lazy{:href => "http://#{rando}.tonight.pm"} 
-    #{rando}.tonight.pm
+%script
+  :plain
+    (function(g,q,w,c){
+      var i=q(g+"input"),v=q(g+"div")
+      i.style.width=w(v)-w(q(g+"span"))+"px"
+      i.onfocus=function(){v[c]="focus"}
+      i.onblur=function(){v[c]=""}
+    })("#gen ", function(s){ return document.querySelector(s) }, function(e){ return parseInt(getComputedStyle(e).width, 10) }, "className")

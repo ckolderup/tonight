@@ -32,6 +32,10 @@ h1, #title input {
 h1 {
   display: none; }
 
+#info h1, #info p {
+  display: block;
+  margin-bottom: 10px; }
+
 #title input {
   padding: 0;
   margin: 0;
@@ -81,17 +85,18 @@ form.add label {
 form.add input[type='text'] {
   border: 1px solid #cccccc;
   padding: 4px;
-  width: 225px; }
+  width: 300px;
+  border-radius: 1px 3px 3px 1px;
+  margin-right: -80px; }
 form.add input[type='text']:focus {
   outline: 0;
-  border: 2px solid #888888;
-  padding: 3px; }
-form.add button {
-  border: 0;
+  -webkit-box-shadow: 0 0 3px #5555ff; }
+
+button {
+  cursor: pointer;
   height: 30px;
   width: 80px;
   float: right;
-  margin: 0 0 0 -5;
   line-height: 30px;
   color: white;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
@@ -102,9 +107,9 @@ form.add button {
   border-radius: 3px;
   border: 1px solid rgba(0, 0, 0, 0.1);
   position: relative; }
-.in form.add button {
+.in button {
   background-color: #66d958; }
-.out form.add button {
+.out button {
   background-color: #d45649; }
 
 .responders {
@@ -161,9 +166,45 @@ textarea.responders {
   border-color: rgba(0, 0, 0, 0.2);
   outline: 0; }
 
+form#gen {
+  margin: 20px 0; }
+form#gen div {
+  white-space: nowrap;
+  border: 1px solid #cccccc;
+  border-radius: 1px;
+  background: white;
+  padding: 4px;
+  overflow: hidden;
+  text-align: right; }
+form#gen input, form#gen span {
+  display: inline-block;
+  font-size: 20px;
+  line-height: 20px; }
+form#gen input {
+  background: transparent;
+  border: none;
+  padding: 0;
+  text-align: right;
+  margin: 0; }
+form#gen input:focus {
+  outline: 0; }
+form#gen div.focus {
+  outline: 0;
+  -webkit-box-shadow: 0 0 3px #5555ff; }
+form#gen span {
+  margin-left: -0.5ex; }
+form#gen button {
+  background-color: #66d958;
+  display: block;
+  margin: 10px 0;
+  width: 100%; }
+
 #footer {
   margin-top: 20px;
   font-size: 14px;
   color: #555555;
   text-align: center;
   font-style: italic; }
+#footer a {
+  color: #3333cc;
+  text-decoration: none; }

@@ -32,6 +32,10 @@ class Tonight < Sinatra::Application
   set :haml, { :format => :html5, :ugly => true }
   set :sass, { :style => :compressed }
   
+  before do
+    @app_env = (request.host =~ /\.pm$/) ? :production : :development
+  end
+  
   subdomain do
     get '/' do
       if subdomain == "www"
@@ -100,7 +104,12 @@ class Tonight < Sinatra::Application
     info_page
   end
 
+  post '/generate' do
+    redirect to("http://#{params[:slug]}.#{request.host}")
+  end
+
   def info_page
+    @info = true
     haml :info, :locals => {:rando => unoccupied_word}
   end
   

@@ -6,6 +6,7 @@
     timestamp,
     date,
     label,
+    title = document.querySelector("h2"),
     copyLink = document.querySelector("a[href='/copy']"),
     selectOutField
   
@@ -31,5 +32,5 @@
   
   if (location.hash === "#out") selectOutField()
   
-  document.querySelector("h2").onclick = selectOutField
+  title && (title.onclick = selectOutField)
 })()
