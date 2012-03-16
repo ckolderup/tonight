@@ -1,0 +1,14 @@
+%h1#header= @event.title
+%form#title{ :method => 'post', :action => '/' }
+  %input{ :type => 'text', :rows => 1, :cols => 20, :name => 'title', :value => @event.title }
+  
+%h2
+  %a.in{ :href => '#' }
+    = @responders[:in].size
+    in
+
+  &bull;
+  
+  %a.out{ :href => '#out' }
+    = @responders[:out].size
+    out

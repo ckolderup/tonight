@@ -1,7 +1,7 @@
-%h1#header 
-  #{subdomain}
+= haml :_header
 
-%textarea#attendees-copy{ :autofocus => true, :rows => @attending.size + 1, :cols => 40 }= "Current Total: #{@attending.count}\n" + @attending.map(&:name).join("\n")
+%textarea.in.responders{  :autofocus => true, :rows => [@responders[:in].size + 1,  10].max, :cols => 40 }= @output[:in]
+%textarea.out.responders{ :autofocus => true, :rows => [@responders[:out].size + 1, 10].max, :cols => 40 }= @output[:out]
 
 %p#footer
   %a{ :href => '/' } Regular list
@@ -9,6 +9,3 @@
   Delete responsibly.
   &bull;
   %a{ :href => 'http://tonight.pm' } tonight.pm
-
-%script
-  document.getElementById("attendees-copy").select()

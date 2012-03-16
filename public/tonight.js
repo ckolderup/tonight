@@ -1,11 +1,12 @@
 (function(){
   var
-    offset = (new Date()).getTimezoneOffset() * -60000,
+    offset = (new Date()).getTimezoneOffset() / -60 * 1000,
     timestamps = document.getElementsByClassName("timestamp"),
     i,
     timestamp,
     date,
     label,
+    copyLink = document.querySelector("a[href='/copy']"),
     selectOutField
   
   for (i = 0; i < timestamps.length; i++) {
@@ -17,11 +18,18 @@
     timestamp.innerHTML = label
   }
   
-  selectOutField = function() {
-    document.querySelector(".out form.add input").select()
+  selectOutField = function(e) {
+    if (e && e.target && e.target.nodeName == "H2") return;
+    var
+      side = (e && e.target && e.target.className) || "out",
+      responders = document.querySelector(".responders." + side)
+
+    if (copyLink) copyLink.attributes.href.value = "/copy" + (side === "out" ? "#out" : "")
+    ;(responders.nodeName === "TEXTAREA" ? responders : document.querySelector("." + side + " form.add input"))
+      .select()
   }
   
   if (location.hash === "#out") selectOutField()
   
-  document.querySelector("h2 a.out").onclick = selectOutField
+  document.querySelector("h2").onclick = selectOutField
 })()

@@ -1,0 +1,9 @@
+%ul
+  - responders.each do |responder|
+    %li{ :class => ('added' if @added_id == responder.id) }
+      %span.name= html_escape responder.name
+      %span.timestamp{ :data => { :unixtime => responder.timestamp.to_time.to_i }}= responder.timestamp.strftime('%I:%M%p').sub(/^0/, '')
+      %form.delete{ :action => '/delete', :method => 'POST' }
+        %input{ :name => 'id', :value => responder.id, :type => 'hidden' }
+        %button{ :title => "Delete #{ responder.name }" } &times;
+    

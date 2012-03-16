@@ -1,1 +1,169 @@
-html,body,h1,h2,form,div,p,ul,li,dl,dt,dd,input,button{margin:0;padding:0;list-style:none}html{background:#800}body,input[type='text'],button{font:16px/20px "Helvetica",sans-serif}body{width:300px;padding:15px 10px;background:#fffcfc;margin:5px auto;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;-webkit-box-shadow:0px 1px 2px rgba(0,0,0,0.25);-moz-box-shadow:0px 1px 2px rgba(0,0,0,0.25);box-shadow:0px 1px 2px rgba(0,0,0,0.25)}h1{text-align:center;font-size:25px;line-height:30px}h2{font-weight:normal;font-size:20px;line-height:20px;padding:10px 0;margin-bottom:10px;text-align:center;color:rgba(0,0,0,0.5)}h2 a{display:inline-block;padding:10px 5px;margin:-10px 0;font-weight:bold;color:#000;text-decoration:none;border-radius:3px}h2 a.out,#out:target h2 a.in{opacity:0.3}#out:target h2 a.out{opacity:1}form.add{margin:15px -5px;padding:5px;overflow:hidden}form.add > *{display:block;float:left}form.add label{display:none}form.add input[type='text']{border:1px solid #ccc;padding:4px;width:225px}form.add input[type='text']:focus{outline:0;border:2px solid #888;padding:3px}form.add button{border:0;height:30px;width:80px;float:right;margin:0 0 0 -5;line-height:30px;color:#fff;text-shadow:0 -1px 0 rgba(0,0,0,0.2);background:-webkit-linear-gradient(-90deg, rgba(255,255,255,0.3), rgba(255,255,255,0), transparent);background:-moz-linear-gradient(-90deg, rgba(255,255,255,0.3), rgba(255,255,255,0), transparent);-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;border:1px solid rgba(0,0,0,0.1);position:relative}.in form.add button{background-color:#66d958}.out form.add button{background-color:#d45649}.responders{margin:20px 0}.responders ul{width:320px;margin-left:-10px}.responders ul li{padding-left:10px;overflow:hidden}.responders ul li.added{background:#fffc93}.responders ul li > *{display:block;float:left;line-height:30px}.responders.out{display:none}#out:target .responders.in{display:none}#out:target .responders.out{display:block}.name{width:215px;height:30px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}.timestamp{color:#888;font-size:12px;width:65px;text-align:right}.delete button{display:block;border:0;color:#888;background:none;height:30px;width:30px;line-height:25px}#footer{margin-top:20px;font-size:14px;color:#555;text-align:center;font-style:italic} #lazy{display:block;margin:20px 0;text-align:center;padding:5px 0;background:#EBB2A6;color:#1E0603;text-decoration:none;}
+html, body, h1, h2, form, div, p, ul, li, dl, dt, dd, input, button {
+  margin: 0;
+  padding: 0;
+  list-style: none; }
+
+html {
+  background: #880000; }
+
+body, input[type='text'], button, textarea {
+  font: 16px/20px "Helvetica", sans-serif; }
+
+body {
+  width: 300px;
+  padding: 15px 10px;
+  background: #fffcfc;
+  margin: 5px auto;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25); }
+
+h1, #title input {
+  display: block;
+  text-align: center;
+  font-size: 25px;
+  line-height: 30px;
+  font-weight: bold;
+  width: 100%; }
+
+h1 {
+  display: none; }
+
+#title input {
+  padding: 0;
+  margin: 0;
+  color: inherit;
+  background: transparent;
+  border: none;
+  border-radius: 1px;
+  resize: none; }
+#title input:focus {
+  outline: 0;
+  background: #eeeeff;
+  padding: 5px 0;
+  margin: -5px 0; }
+
+h2 {
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 20px;
+  padding: 10px 0;
+  margin-bottom: 10px;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.5); }
+h2 a {
+  display: inline-block;
+  padding: 10px 5px;
+  margin: -10px 0;
+  font-weight: bold;
+  color: black;
+  text-decoration: none;
+  border-radius: 3px; }
+
+h2 a.out, #out:target h2 a.in {
+  opacity: 0.3; }
+
+#out:target h2 a.out {
+  opacity: 1; }
+
+form.add {
+  margin: 15px -5px;
+  padding: 5px;
+  overflow: hidden; }
+form.add > * {
+  display: block;
+  float: left; }
+form.add label {
+  display: none; }
+form.add input[type='text'] {
+  border: 1px solid #cccccc;
+  padding: 4px;
+  width: 225px; }
+form.add input[type='text']:focus {
+  outline: 0;
+  border: 2px solid #888888;
+  padding: 3px; }
+form.add button {
+  border: 0;
+  height: 30px;
+  width: 80px;
+  float: right;
+  margin: 0 0 0 -5;
+  line-height: 30px;
+  color: white;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
+  background: -webkit-linear-gradient(-90deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0), transparent);
+  background: -moz-linear-gradient(-90deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0), transparent);
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  position: relative; }
+.in form.add button {
+  background-color: #66d958; }
+.out form.add button {
+  background-color: #d45649; }
+
+.responders {
+  margin: 20px 0; }
+.responders ul {
+  /* flow out a little */
+  width: 320px;
+  margin-left: -10px; }
+.responders ul li {
+  padding-left: 10px;
+  overflow: hidden; }
+.responders ul li.added {
+  background: #fffc93; }
+.responders ul li > * {
+  display: block;
+  float: left;
+  line-height: 30px; }
+.responders.out {
+  display: none; }
+
+#out:target .responders.in {
+  display: none; }
+#out:target .responders.out {
+  display: block; }
+
+.name {
+  width: 215px;
+  height: 30px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis; }
+
+.timestamp {
+  color: #888888;
+  font-size: 12px;
+  width: 65px;
+  text-align: right; }
+
+.delete button {
+  display: block;
+  border: 0;
+  color: #888888;
+  background: none;
+  height: 30px;
+  width: 30px;
+  line-height: 25px; }
+
+textarea.responders {
+  width: 300px;
+  padding: 5px;
+  margin: 0;
+  background: rgba(255, 255, 255, 0.8);
+  border: 2px solid #cccccc;
+  border-color: rgba(0, 0, 0, 0.2);
+  outline: 0; }
+
+#footer {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #555555;
+  text-align: center;
+  font-style: italic; }

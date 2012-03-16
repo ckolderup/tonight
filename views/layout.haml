@@ -1,6 +1,8 @@
 %html
   %head
-    %title tonight.pm
+    %title
+      = "#{@event.title} -" if @event
+      tonight.pm
     %meta{ :name => 'viewport', :content => 'width=320, initial-scale=1, maximum-scale=1' }
     %link{ :rel => 'stylesheet', :href => '/tonight.css' }
     - if false
@@ -14,4 +16,4 @@
 
   %body#out
     = yield
-    %script{ :src => '/tonight.min.js' }
+    %script{ :src => '/tonight.js' }

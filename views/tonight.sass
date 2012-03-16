@@ -21,10 +21,31 @@ body
   :-moz-box-shadow 0px 1px 2px rgba(0,0,0,.25)
   :box-shadow 0px 1px 2px rgba(0,0,0,.25)
   
-h1
+h1, #title input
+  :display block
   :text-align center
   :font-size 25px
   :line-height 30px
+  :font-weight bold
+  :width 100%
+  
+h1
+  :display none
+  
+#title input
+  :padding 0
+  :margin 0
+  :color inherit
+  :background transparent
+  :border none
+  :border-radius 1px
+  :resize none
+  
+  &:focus
+    :outline 0
+    :background #EEF
+    :padding 5px 0
+    :margin -5px 0
   
 h2
   :font-weight normal
@@ -149,10 +170,10 @@ form.add
     :width 30px
     :line-height 25px
     
-#attendees-copy
+textarea.responders
   :width 300px
   :padding 5px
-  :margin 20px 0 0
+  :margin 0
   :background rgba(255, 255, 255, 0.8)
   :border 2px solid #CCC
   :border-color rgba(0, 0, 0, 0.2)

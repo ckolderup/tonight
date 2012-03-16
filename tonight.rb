@@ -8,12 +8,19 @@ require 'random-word'
 
 DataMapper.setup(:default, ENV['DATABASE_URL'] || "sqlite://#{Dir.pwd}/tonight.db")
 
+class Event
+  include DataMapper::Resource
+  property :id,        Serial
+  property :subdomain, Text
+  property :title,     Text
+end
+
 class Attending
   include DataMapper::Resource
-  property :id,     Serial
+  property :id,        Serial
   property :subdomain, Text
-  property :name,   Text
-  property :declined, Boolean
+  property :name,      Text
+  property :declined,  Boolean
   property :timestamp, DateTime
 end
 
@@ -27,37 +34,39 @@ class Tonight < Sinatra::Application
   
   subdomain do
     get '/' do
-
       if subdomain == "www"
         info_page
         exit
       end
-
-      reset_page(subdomain)
-
-      @attending = []
-      @declined  = []
       
-      responders = Attending.all :subdomain => subdomain, :order => :timestamp.desc
-      responders.each do |responder|
-        if responder.declined
-          @declined << responder
-        else
-          @attending << responder
-        end
-      end
+      reset_page subdomain
+      
+      fetch_resources subdomain
       
       @added_id = session.delete :added_id
 
       haml :index
     end
     
+    post '/' do
+      fetch_resources subdomain
+      
+      @event.title = params[:title]
+      @event.save
+      
+      redirect to('/')
+    end
+    
     get '/copy' do
-
-      reset_page(subdomain)
-
-      @attending = Attending.all :subdomain => subdomain, 
-                                 :order => :timestamp.desc, :declined => false
+      reset_page subdomain
+      
+      fetch_resources subdomain
+      
+      @output = {}
+      
+      [:in, :out].each do |group|
+        @output[group] = (["#{@responders[group].size} #{group}:"] + @responders[group].map(&:name)).join("\n")
+      end
       
       haml :copy
     end
@@ -69,7 +78,7 @@ class Tonight < Sinatra::Application
       attendee = Attending.create \
         :name => name,
         :subdomain => subdomain, 
-        :declined => !!params[:declined],
+        :declined => !!params[:out],
         :timestamp => DateTime.now
 
       session[:added_id] = attendee.id
@@ -94,6 +103,17 @@ class Tonight < Sinatra::Application
   def info_page
     haml :info, :locals => {:rando => unoccupied_word}
   end
+  
+  def fetch_resources subdomain
+    @event = Event.first :subdomain => subdomain
+    @event ||= Event.create :subdomain => subdomain, :title => subdomain
+
+    @responders = { :in => [], :out => [] }
+    
+    Attending.all(:subdomain => subdomain, :order => :timestamp.desc).each do |responder|
+      @responders[responder.declined ? :out : :in] << responder
+    end
+  end
 
   def unoccupied_word
     begin
@@ -103,7 +123,7 @@ class Tonight < Sinatra::Application
     rando
   end
 
-  def reset_page(subdomain)
+  def reset_page subdomain
     oldest = Attending.first(:subdomain => subdomain, :order => :timestamp.asc) 
     return if oldest.nil?
 

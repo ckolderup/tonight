@@ -1,16 +1,4 @@
-%h1#header 
-  #{subdomain}
-  
-%h2
-  %a.in{ :href => '#' }
-    = @attending.size
-    in
-
-  &bull;
-  
-  %a.out{ :href => '#out' }
-    = @declined.size
-    out
+= haml :_header
 
 .in.responders
   %form.add{ :action => '/add', :method => 'POST' }
@@ -18,19 +6,15 @@
     %input{ :type => 'text', :id => 'name', :name => 'name', :autofocus => true }
     %button I&rsquo;m in
 
-  %ul
-    - @attending.each do |responder|
-      = haml :_responder, :locals => { :responder => responder }
+  = haml :_responders, :locals => { :responders => @responders[:in] }
 
 .out.responders
   %form.add{ :action => '/add', :method => 'POST' }
     %label{ :for => 'name' } Name
     %input{ :type => 'text', :id => 'name', :name => 'name' }
-    %button{ :name => 'declined', :value => 'true' } I&rsquo;m out
+    %button{ :name => 'out', :value => 'true' } I&rsquo;m out
 
-  %ul
-    - @declined.each do |responder|
-      = haml :_responder, :locals => { :responder => responder }
+  = haml :_responders, :locals => { :responders => @responders[:out] }
 
 %p#footer
   %a{ :href => '/copy' } Copy names
