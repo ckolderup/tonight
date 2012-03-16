@@ -56,7 +56,8 @@ class Tonight < Sinatra::Application
 
       reset_page(subdomain)
 
-      @attending = Attending.all :subdomain => subdomain, :order => :timestamp.desc
+      @attending = Attending.all :subdomain => subdomain, 
+                                 :order => :timestamp.desc, :declined => false
       
       haml :copy
     end
