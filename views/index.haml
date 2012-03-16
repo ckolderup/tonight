@@ -1,23 +1,36 @@
 %h1#header 
   #{subdomain}
-
-%h2
-  Current Total:
-  %strong= @attending.count
   
-%form#add{ :action => '/add', :method => 'POST' }
-  %label{ :for => 'name' } Name
-  %input{ :type => 'text', :id => 'name', :name => 'name', :autofocus => true }
-  %button I&rsquo;m in
+%h2
+  %a.in{ :href => '#' }
+    = @attending.size
+    in
 
-%ul#attendees
-  - @attending.each do |attendee|
-    %li{ :class => (@added_id == attendee.id ? 'added' : nil) }
-      %span.name= html_escape attendee.name
-      %span.timestamp{ :data => { :unixtime => attendee.timestamp.to_time.to_i }}= attendee.timestamp.strftime('%I:%M%p').sub(/^0/, '')
-      %form.delete{ :action => '/delete', :method => 'POST' }
-        %input{ :name => 'id', :value => attendee.id, :type => 'hidden' }
-        %button{ :title => "Delete #{ attendee.name }" } &times;
+  &bull;
+  
+  %a.out{ :href => '#out' }
+    = @declined.size
+    out
+
+.in.responders
+  %form.add{ :action => '/add', :method => 'POST' }
+    %label{ :for => 'name' } Name
+    %input{ :type => 'text', :id => 'name', :name => 'name', :autofocus => true }
+    %button I&rsquo;m in
+
+  %ul
+    - @attending.each do |responder|
+      = haml :_responder, :locals => { :responder => responder }
+
+.out.responders
+  %form.add{ :action => '/add', :method => 'POST' }
+    %label{ :for => 'name' } Name
+    %input{ :type => 'text', :id => 'name', :name => 'name' }
+    %button{ :name => 'declined', :value => 'true' } I&rsquo;m out
+
+  %ul
+    - @declined.each do |responder|
+      = haml :_responder, :locals => { :responder => responder }
 
 %p#footer
   %a{ :href => '/copy' } Copy names

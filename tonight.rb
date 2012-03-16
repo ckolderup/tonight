@@ -13,6 +13,7 @@ class Attending
   property :id,     Serial
   property :subdomain, Text
   property :name,   Text
+  property :declined, Boolean
   property :timestamp, DateTime
 end
 
@@ -34,7 +35,18 @@ class Tonight < Sinatra::Application
 
       reset_page(subdomain)
 
-      @attending = Attending.all :subdomain => subdomain, :order => :timestamp.desc
+      @attending = []
+      @declined  = []
+      
+      responders = Attending.all :subdomain => subdomain, :order => :timestamp.desc
+      responders.each do |responder|
+        if responder.declined
+          @declined << responder
+        else
+          @attending << responder
+        end
+      end
+      
       @added_id = session.delete :added_id
 
       haml :index
@@ -52,10 +64,12 @@ class Tonight < Sinatra::Application
     post '/add' do
       name = params[:name]
       name = 'Lazy Mystery Guest' if name.length == 0
-      time = DateTime.now
 
-      attendee = Attending.create(:name => name, :subdomain => subdomain, 
-                                  :timestamp => time)
+      attendee = Attending.create \
+        :name => name,
+        :subdomain => subdomain, 
+        :declined => !!params[:declined],
+        :timestamp => DateTime.now
 
       session[:added_id] = attendee.id
 
