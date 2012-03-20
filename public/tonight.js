@@ -12,7 +12,7 @@
   
   for (i = 0; i < timestamps.length; i++) {
     timestamp = timestamps[i]
-    date = new Date(parseInt(timestamp.attributes["data-unixtime"].value, 10) * 1000 + offset)
+    date = new Date(parseInt(timestamp.attributes["data-unixtime"].value, 10) * 1000)
     label = (date.getHours() > 12 ? date.getHours() - 12 : date.getHours())
     label += ":" + (date.getMinutes() < 10 ? "0" : "") + date.getMinutes()
     label += (date.getHours() >= 12 ? "PM" : "AM")
