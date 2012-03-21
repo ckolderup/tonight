@@ -4,7 +4,7 @@ tonight.pm is a handy tool to facilitate RSVPs on the day of an event. Maybe you
 
 By visiting your own page at anything.tonight.pm, you and your friends can quickly add yourselves to the list of attendees and get on with your day.
 
-Pages reset automatically 24 hours after the first entry is added to them— tonight.pm is a tool for short-term RSVPs. This also prevents people from camping on simple, short subdomains, so if your bowling league meets on Mondays and some other person on the internet has one on Fridays, you can both use `bowling.tonight.pm` without any conflict. Neat!
+Pages reset automatically 24 hours after the first entry is added to them— tonight.pm is a tool for short-term RSVPs. This also prevents people from camping on simple, short subdomains, so if your bowling league meets on Mondays and some other person on the internet has one on Fridays, you can both use `bowling.tonight.pm` without any conflict. Neat!!!
 
 Contributors:
 
