@@ -10,9 +10,11 @@ Contributors:
 
 * [Casey Kolderup][ck]
 * [John Holdun][joho]
+* [Logan Capaldo][brogan]
 
 [ck]: http://github.com/ckolderup
 [joho]: http://github.com/johnholdun
+[brogan]: http://github.com/lcapaldo
 
 Tonight.pm uses:
 
