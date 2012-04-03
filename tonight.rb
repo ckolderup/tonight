@@ -141,5 +141,8 @@ class Tonight < Sinatra::Application
 
     stale = Attending.all(:subdomain => subdomain)
     stale.each { |a| a.destroy }
+
+    stale_event = Event.all(:subdomain => subdomain)
+    stale_event.each { |a| a.destroy }
   end
 end
