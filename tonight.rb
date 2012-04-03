@@ -94,7 +94,7 @@ class Tonight < Sinatra::Application
       id = params[:id]
 
       victim = Attending.get(id)
-      victim.destroy
+      victim.destroy unless victim.nil?
 
       redirect '/', 303
     end
