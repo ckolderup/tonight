@@ -79,16 +79,18 @@ class Tonight < Sinatra::Application
     post '/add' do
       name = params[:name]
       name = 'Lazy Mystery Guest' if name.length == 0
+      declined = !!params[:out]
 
       attendee = Attending.create \
         :name => name,
-        :subdomain => subdomain, 
-        :declined => !!params[:out],
+        :subdomain => subdomain,
+        :declined => declined,
         :timestamp => DateTime.now
 
       session[:added_id] = attendee.id
 
-      redirect '/', 303
+      redir = (declined ? '/#out' : '/')
+      redirect redir, 303
     end
 
     post '/delete' do
