@@ -1,6 +1,7 @@
 %h1#header= @event.title
 %form#title{ :method => 'post', :action => '/' }
-  %input{ :type => 'text', :rows => 1, :cols => 20, :name => 'title', :value => @event.title }
+  %input{ :type => 'text', :cols => 20, :name => 'title',
+          :value => @event.title, :title => @event.title }
   
 %h2
   %a.in{ :href => '#' }
