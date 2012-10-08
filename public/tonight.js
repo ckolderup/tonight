@@ -39,10 +39,8 @@
     var out = document.querySelector(".out form.add button")
     if (this.value == "") {
       out.setAttribute('disabled', 'disabled')
-      console.log("disabling");
     } else {
       out.removeAttribute('disabled')
-      console.log("enabling");
     }
   }
   
