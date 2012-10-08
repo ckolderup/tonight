@@ -7,6 +7,7 @@ gem 'dm-postgres-adapter'
 gem 'haml', '3.0.25'
 gem 'sinatra-subdomain'
 gem 'random-word'
+gem 'color-tools'
 
 group :development do
   gem "tux"

@@ -5,6 +5,7 @@ require 'haml'
 require 'sass'
 require 'sinatra/subdomain'
 require 'random-word'
+require 'color'
 
 DataMapper.setup(:default, ENV['DATABASE_URL'] || "sqlite://#{Dir.pwd}/tonight.db")
 
@@ -15,7 +16,9 @@ class Event
   property :title,     Text
 
   def hexcolor
-    "##{Digest::MD5.hexdigest(subdomain)[0,6]}"
+    #the +18 fudge factor is so that the page my friends and I use looks the same :)
+    majick = (Digest::MD5.hexdigest(subdomain)[0,3].to_i(16) + 18) % 255
+    Color::HSL.new(majick, 100, 27).html
   end
 end
 
