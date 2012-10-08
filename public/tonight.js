@@ -31,6 +31,23 @@
   }
   
   if (location.hash === "#out") selectOutField()
-  
+
   title && (title.onclick = selectOutField)
+
+  
+  resetOutButtonState = function() {
+    var out = document.querySelector(".out form.add button")
+    if (this.value == "") {
+      out.setAttribute('disabled', 'disabled')
+      console.log("disabling");
+    } else {
+      out.removeAttribute('disabled')
+      console.log("enabling");
+    }
+  }
+  
+  var name = document.querySelector(".out form.add input#name")
+
+  name.onkeyup = resetOutButtonState
+  name.onkeyup()
 })()

@@ -29,6 +29,7 @@ h1, #title input
   :font-weight bold
   :width 100%
   :overflow hidden
+  :text-overflow ellipsis
   
 h1
   :display none
@@ -120,6 +121,9 @@ button
     
   .out &
     :background-color #D45649
+
+  .out &[disabled]
+    :background-color #9A8684
   
 .responders
   :margin 20px 0

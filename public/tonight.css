@@ -32,9 +32,7 @@ h1, #title input {
   text-overflow: ellipsis; }
 
 h1 {
-  display: none;
-  overflow: hidden;
-  text-overflow: ellipsis; }
+  display: none; }
 
 #info h1, #info p {
   display: block;
@@ -115,6 +113,8 @@ button {
     background-color: #66d958; }
   .out button {
     background-color: #d45649; }
+  .out button[disabled] {
+    background-color: #9a8684; }
 
 .responders {
   margin: 20px 0; }
