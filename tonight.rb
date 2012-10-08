@@ -13,6 +13,10 @@ class Event
   property :id,        Serial
   property :subdomain, Text
   property :title,     Text
+
+  def hexcolor
+    "##{Digest::MD5.hexdigest(subdomain)[0,6]}"
+  end
 end
 
 class Attending
