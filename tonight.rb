@@ -46,8 +46,7 @@ class Tonight < Sinatra::Application
   subdomain do
     get '/' do
       if subdomain == "www"
-        info_page
-        exit
+        return info_page
       end
 
       reset_page subdomain
