@@ -1,8 +1,8 @@
 %h1#header= @event.title
 %form#title{ :method => 'post', :action => '/' }
   %input{ :type => 'text', :cols => 20, :name => 'title',
-          :value => @event.title, :title => @event.title }
-  
+          :value => @event.title, :title => 'set at ' + @event.timestamp.strftime('%I:%M%p').sub(/^0/, '') }
+
 %h2
   %a.in{ :href => '#' }
     = @responders[:in].size
