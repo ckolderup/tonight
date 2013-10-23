@@ -14,6 +14,7 @@ class Event
   property :id,        Serial
   property :subdomain, Text
   property :title,     Text
+  property :timestamp, DateTime
 
   def hexcolor
     #the +18 fudge factor is so that the page my friends and I use looks the same :)
@@ -62,6 +63,7 @@ class Tonight < Sinatra::Application
       fetch_resources subdomain
 
       @event.title = params[:title]
+      @event.timestamp = DateTime.now
       @event.save
 
       redirect to('/')
@@ -124,7 +126,7 @@ class Tonight < Sinatra::Application
 
   def fetch_resources subdomain
     @event = Event.first :subdomain => subdomain
-    @event ||= Event.create :subdomain => subdomain, :title => subdomain
+    @event ||= Event.create :subdomain => subdomain, :title => subdomain, :timestamp => DateTime.now
 
     @responders = { :in => [], :out => [] }
 
