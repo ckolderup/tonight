@@ -30,7 +30,6 @@
   inputIdx = inputTitle.title.lastIndexOf(" ") + 1;
   if (-1 != inputIdx) {
     inputPrefix = inputTitle.title.substr(0, inputIdx);
-    date = new Date(parseInt(inputTitle.attributes["data-unixtime"].value, 10) * 1000)
     inputTitle.title = inputPrefix + localizedTimestamp(inputTitle)
   }
   
