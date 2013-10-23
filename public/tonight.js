@@ -8,15 +8,30 @@
     label,
     title = document.querySelector("h2"),
     copyLink = document.querySelector("a[href='/copy']"),
+    inputTitle = document.getElementById("input-title"),
+    inputIdx,
+    inputPrefix,
+    localizedTimestamp,
     selectOutField
-  
-  for (i = 0; i < timestamps.length; i++) {
-    timestamp = timestamps[i]
-    date = new Date(parseInt(timestamp.attributes["data-unixtime"].value, 10) * 1000)
+
+  localizedTimestamp = function(o) {
+    date = new Date(parseInt(o.attributes["data-unixtime"].value, 10) * 1000)
     label = (date.getHours() > 12 ? date.getHours() - 12 : date.getHours())
     label += ":" + (date.getMinutes() < 10 ? "0" : "") + date.getMinutes()
     label += (date.getHours() >= 12 ? "PM" : "AM")
-    timestamp.innerHTML = label
+    return label
+  }
+  
+  for (i = 0; i < timestamps.length; i++) {
+    timestamp = timestamps[i]
+    timestamp.innerHTML = localizedTimestamp(timestamp)
+  }
+
+  inputIdx = inputTitle.title.lastIndexOf(" ") + 1;
+  if (-1 != inputIdx) {
+    inputPrefix = inputTitle.title.substr(0, inputIdx);
+    date = new Date(parseInt(inputTitle.attributes["data-unixtime"].value, 10) * 1000)
+    inputTitle.title = inputPrefix + localizedTimestamp(inputTitle)
   }
   
   selectOutField = function(e) {

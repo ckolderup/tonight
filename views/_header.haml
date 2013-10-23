@@ -1,7 +1,8 @@
 %h1#header= @event.title
 %form#title{ :method => 'post', :action => '/' }
   %input{ :type => 'text', :cols => 20, :name => 'title',
-          :value => @event.title, :title => 'set at ' + @event.timestamp.strftime('%I:%M%p').sub(/^0/, '') }
+    :id => 'input-title', :value => @event.title, :title => 'set at ' + @event.timestamp.strftime('%I:%M%p').sub(/^0/, ''),
+    :data => { :unixtime => @event.timestamp.to_time.to_i } }
 
 %h2
   %a.in{ :href => '#' }
