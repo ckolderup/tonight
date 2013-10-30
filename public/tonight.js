@@ -1,5 +1,6 @@
 (function(){
 
+  // transform an epoch to a user-local time
   (function(){
     var localizedTimestamp = function(o) {
       var date = new Date(parseInt(o.attributes["data-unixtime"].value, 10) * 1000);
@@ -9,6 +10,7 @@
       return label;
     };
     
+    // apply epoch -> local time transformation to individual checkins
     (function(){
       var timestamps = document.getElementsByClassName("timestamp");
       for (var i = 0; i < timestamps.length; i++) {
@@ -17,6 +19,7 @@
       }
     }());
 
+    // apply epoch -> local time transformation to title tooltip transformation 
     (function(){
       var inputTitle = document.getElementById("input-title");
       var inputIdx = inputTitle.title.lastIndexOf(" ") + 1;
@@ -27,6 +30,8 @@
     }());
   }());
 
+  // make sure the cursor is focused in the input box OR the textarea,
+  // depending on what mode we're in
   (function(){
     var copyLink = document.querySelector("a[href='/copy']");
     var selectOutField = function(e) {
@@ -40,7 +45,8 @@
     var title = document.querySelector("h2");
     title && (title.onclick = selectOutField);
   }());
-    
+  
+  // only make OUT button active if we're not a lazy mystery guest  
   (function(){
     var resetOutButtonState = function() {
       var out = document.querySelector(".out form.add button");
@@ -50,9 +56,7 @@
         out.removeAttribute('disabled');
       }
     };
-
     var name = document.querySelector(".out form.add input#name");
-
     name.onkeyup = resetOutButtonState;
     name.onkeyup();
   }());
