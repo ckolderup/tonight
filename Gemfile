@@ -1,4 +1,6 @@
 source :gemcutter
+ruby '2.1.2'
+
 gem 'rack', '~>1.3.6'
 gem 'sinatra'
 gem 'data_mapper', '1.2.0'
