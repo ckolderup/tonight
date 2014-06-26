@@ -105,7 +105,16 @@ class Tonight < Sinatra::Application
       id = params[:id]
 
       victim = Attending.get(id)
-      victim.destroy unless victim.nil?
+
+      unless victim.nil? then
+        unless victim.destroy then
+          puts "couldn't destroy!"
+        else
+          puts "destroyed!"
+        end
+      else
+        puts "couldn't find attendee"
+      end
 
       redirect '/', 303
     end
