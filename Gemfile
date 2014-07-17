@@ -1,4 +1,4 @@
-source :gemcutter
+source 'https://rubygems.org'
 ruby '2.1.2'
 
 gem 'rack', '~>1.3.6'
@@ -14,5 +14,6 @@ group :development do
   gem "tux"
   gem "heroku"
   gem 'dm-sqlite-adapter', '1.2.0'
+  gem 'foreman'
   gem "shotgun"
 end
