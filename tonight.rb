@@ -102,19 +102,8 @@ class Tonight < Sinatra::Application
     end
 
     post '/delete' do
-      id = params[:id]
-
-      victim = Attending.get(id)
-
-      unless victim.nil? then
-        unless victim.destroy then
-          puts "couldn't destroy!"
-        else
-          puts "destroyed!"
-        end
-      else
-        puts "couldn't find attendee"
-      end
+      victim = Attending.get(params[:id].to_i)
+      victim.destroy unless victim.nil?
 
       redirect '/', 303
     end
