@@ -50,17 +50,17 @@ class Tonight < Sinatra::Application
         return info_page
       end
 
-      reset_page subdomain
+      reset_page(subdomain)
 
-      fetch_resources subdomain
+      fetch_resources(subdomain)
 
-      @added_id = session.delete :added_id
+      @added_id = session.delete(:added_id)
 
       haml :index
     end
 
     post '/' do
-      fetch_resources subdomain
+      fetch_resources(subdomain)
 
       @event.title = params[:title]
       @event.timestamp = DateTime.now
@@ -70,9 +70,9 @@ class Tonight < Sinatra::Application
     end
 
     get '/copy' do
-      reset_page subdomain
+      reset_page(subdomain)
 
-      fetch_resources subdomain
+      fetch_resources(subdomain)
 
       @output = {}
 
@@ -89,11 +89,12 @@ class Tonight < Sinatra::Application
       name = 'Lazy Mystery Guest' if name.length == 0
       declined = !!params[:out]
 
-      attendee = Attending.create \
-        :name => name,
-        :subdomain => subdomain,
-        :declined => declined,
-        :timestamp => DateTime.now
+      attendee = Attending.create(
+        name: name,
+        subdomain: subdomain,
+        declined: declined,
+        timestamp: DateTime.now
+      )
 
       session[:added_id] = attendee.id
 
@@ -119,16 +120,16 @@ class Tonight < Sinatra::Application
 
   def info_page
     @info = true
-    haml :info, :locals => {:rando => unoccupied_word}
+    haml :info, locals: {rando: unoccupied_word}
   end
 
-  def fetch_resources subdomain
-    @event = Event.first :subdomain => subdomain
-    @event ||= Event.create :subdomain => subdomain, :title => subdomain, :timestamp => DateTime.now
+  def fetch_resources(subdomain)
+    @event = Event.first(subdomain: subdomain)
+    @event ||= Event.create(subdomain: subdomain, title: subdomain, timestamp: DateTime.now)
 
-    @responders = { :in => [], :out => [] }
+    @responders = { in: [], out: [] }
 
-    Attending.all(:subdomain => subdomain, :order => :timestamp.desc).each do |responder|
+    Attending.all(subdomain: subdomain, order: :timestamp.desc).each do |responder|
       @responders[responder.declined ? :out : :in] << responder
     end
   end
@@ -136,22 +137,22 @@ class Tonight < Sinatra::Application
   def unoccupied_word
     begin
       rando = RandomWord.nouns.first.gsub('_','-')
-      count = Attending.count(:subdomain => rando)
+      count = Attending.count(subdomain: rando)
     end while count != 0
     rando
   end
 
-  def reset_page subdomain
-    oldest = Attending.first(:subdomain => subdomain, :order => :timestamp.asc) 
+  def reset_page(subdomain)
+    oldest = Attending.first(subdomain: subdomain, order: :timestamp.asc)
     return if oldest.nil?
 
     age_in_days = DateTime.now - oldest.timestamp
     return if age_in_days < 1.0
 
-    stale = Attending.all(:subdomain => subdomain)
+    stale = Attending.all(subdomain: subdomain)
     stale.each { |a| a.destroy }
 
-    stale_event = Event.all(:subdomain => subdomain)
+    stale_event = Event.all(subdomain: subdomain)
     stale_event.each { |a| a.destroy }
   end
 end
